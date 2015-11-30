@@ -1,0 +1,153 @@
+<div id="contentContainer">
+	<div class="container" id="Decision">
+        <div style=" margin-bottom:5px;" class="col-md-8">
+<ul style="margin-left:-30px; margin-bottom:5px;" class="breadcrumb">
+<li>
+<a style="color:#666;" href="home.htm">Home</a>
+</li>
+<li>Track</li>
+<li class="active">User Group Engagement</li>
+</ul>
+</div>
+		<div class="contentpannel contentpannel1">
+			<div class="row AcquisitionPanel" ng-controller="overallUserGroupSummaryController" ng-if="isUserGroupViewable">
+                  <div style="margin-bottom:15px;" class="panel panel-default">
+					<div class="panel-heading">User Groups Metrics</div>
+				</div>
+				
+				<a href="javascript:;" class="pull-right filter-option-menu filter-option-menu1"> </a>
+				<div style="margin-top: 55px;" class="options-filter options-filter1  width clearfix">
+					<img src="images/popmenu-arrow.png" class="popmenu-arrow" />
+					<div>
+						<div class="popupTitle">
+							<label> Select User Group</label>
+						</div>
+						<div class="popupcnt top" ng-repeat="data in userSettings.menus" >
+							<div class="height">
+								<input type="checkbox" ng-model="data.checked" ng-change="menu.onSelect(data)"/> 
+								<label>{{data.menuItemName}} </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="row-fluid metric-widgets"
+					style="margin: 50px 10px 0px 10px" data-page="userGroup">
+
+					<li class="col-md-5ths col-xs-6" ng-repeat="data in userGroup"
+						ng-hide="data.display == false"
+						 ng-if="menuSynced" ng-click="menu.selected(data)">
+						<div class="col-sm-11 col-md-11 metrics-content"
+						ng-class="{selected: data.groupBy==select}">
+							<div class="box-content-top">
+									<h3 class="text-ellipsis" title="{{data.groupName}}">{{data.groupName}}</h3>									
+									<div class="value-green trackingLink">
+										{{data.actual| number}}</div>
+                                    <p class='widget-text'>(Count of users)</p>
+                                    <p class="value1"><span class="ng-binding">{{data.periodAvg| number}}</span></p>
+									<p class="duration">{{averageTimePeriodText}}</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="AcquisitionPanel" ng-controller="userGroupSummaryController" ng-if="isUserGroupViewable">
+                  <div style="margin-bottom:15px;" class="panel panel-default">
+					<div class="panel-heading">{{heading}} Summary</div>
+				</div>
+				
+				<div class="row filterContainer">
+						<ul ng-hide="error" class="row summary-list clearfix">
+							<li ng-show="UserGroupSummary.engScore!=null" class="col-md-5ths col-xs-6">
+								<div class="summarylistInnerwrap">
+									<p>Engagement Score</p>
+									<div class="summary-value">
+										{{UserGroupSummary.engScore | number}}</div>
+
+								</div>
+							</li>
+							<li ng-show="UserGroupSummary.activeUsersPerPeriod!=null"  class="col-md-5ths col-xs-6">
+								<div class="summarylistInnerwrap">
+									<p>Active users per {{timePeriodText}}</p>
+									<div class="summary-value">
+										{{UserGroupSummary.activeUsersPerPeriod | number}}</div>
+
+								</div>
+							</li>
+							<li ng-show="UserGroupSummary.actual!=null" class="col-md-5ths col-xs-6">
+								<div class="summarylistInnerwrap">
+									<p>Total members</p>
+									<div class="summary-value">
+										{{UserGroupSummary.totalMembers | number}}</div>
+
+								</div>
+							</li>
+							<li ng-show="UserGroupSummary.newSubscriptions!=null" class="col-md-5ths col-xs-6">
+								<div class="summarylistInnerwrap">
+									<p>New paid users</p>
+									<div class="summary-value">
+										{{UserGroupSummary.newSubscriptions | number}}</div>
+
+								</div>
+							</li>
+							<li ng-show="UserGroupSummary.conversionRate!=null" class="col-md-5ths col-xs-6">
+								<div class="summarylistInnerwrap">
+									<p>Conversion Rate</p>
+									<div class="summary-value">
+										{{UserGroupSummary.conversionRate}}</div>
+
+								</div>
+							</li>
+						</ul>
+				</div>
+			</div>
+			<div class="row AcquisitionPanel" ng-controller="userGroupTrendController" ng-if="isUserGroupViewable">
+                <div style="margin-bottom:15px;" class="panel panel-default">
+					<div class="panel-heading">{{heading}} Trend</div>
+				</div>
+				<div class="row-fluid" style="padding: 0px 11px;">
+				<div class="pull-right chart-textNote" style="">Current period
+					from {{trendPeriod}}, 2015</div>
+			</div>
+			<div class="row" style="margin-top: 30px; margin-bottom: 10px">
+				<div ng-hide="error" class="DivAcquisitionChart" id="trendChart"></div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+<!----------------------------------------------->
+
+
+
+<div id="boxes" ng-controller="modalContentController" ng-if="isUserGroupViewable">
+
+	<div id="campaignDialog" class="window small-window"  style="min-width:500px;">
+		<div class="modalheading">
+			<h2>&nbsp;</h2>
+			<a href="#" class="close"></a>
+		</div>
+		<div class="modalcontent" >
+		 <ng-include ng-show="error" src="'partials/error.htm'" ></ng-include>
+			<table ng-hide ="error" my-table options="options">
+				<thead>
+					<tr>
+						<th >Campaign</th>
+						<th>Channel</th>
+						<th>Time Remaining</th>
+					</tr>
+					</thead>
+				
+			</table>
+		</div>
+	</div>
+	
+	<div id="tableZoom" class="window">
+		<div class="modalheading">
+			<h2>Table</h2>
+			<a href="#" class="close"></a>
+		</div>
+		<div class="modalcontent"></div>
+	</div>
+</div>
+<div id="mask"></div>
+<div ng-hide ng-controller="userGroupInitController"></div>

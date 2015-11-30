@@ -1,0 +1,104 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="navigationController">
+	<div style="padding:0px;" class="container ng-scope">
+	    <div class="navbar-header col-sm-4">
+			<figure style="margin-top:4px;">
+				<img src="images/logo.png" alt="D-ASSIST $ CONVERTER"
+					title="D-ASSIST $ CONVERTER" />
+			</figure>
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#phoneNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	    </div>
+		<div class="collapse navbar-collapse" id="phoneNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-class="{active: mainHtml=='home'}"><a href="home.htm">Home</a></li>	
+                <li class="dropdown" ng-class="{active: mainHtml=='dashboard'|| mainHtml=='tracking'}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					Track
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu" ng-controller="dwLinkController">
+						<!-- <li class="first" ng-click="navModuleClicked(trackingHtmlName, '#/summary')"><a href="#/summary"
+							ng-class="{active: thisPage=='/summary'}">Summary</a></li> -->
+						<li ng-click="navModuleClicked(trackingHtmlName, '#/business-impact')">
+                         <a tabindex="-1" href="#/business-impact">Business Analysis</a></li>
+						<li ng-click="navModuleClicked(trackingHtmlName, '#/engagement-activity')"><a ng-if="isEngagementTabVisible"
+							href="#/engagement-activity"
+							ng-class="{active: thisPage=='/engagement-activity'}">Engagement
+								Activity</a></li>
+						<li><a ng-if="false" href="#/channel-tracker"
+							ng-class="{active: thisPage=='/channel-tracker'}">Channel
+								Tracker</a></li>
+						<li><a ng-if="false" href="#/campaign-tracker"
+							ng-class="{active: thisPage=='/campaign-tracker'}">Campaign
+								Tracker</a></li>
+						<li ng-click="navModuleClicked(trackingHtmlName, '#/user-group-engagement')"><a ng-if="isUserGroupTabVisible"
+							href="#/user-group-engagement"
+							ng-class="{active: thisPage=='/user-group-engagement'}">User
+								Groups</a></li>
+					</ul></li>
+				
+                 	
+				<li class="dropdown"  ng-class="{active: mainHtml=='analysis'}"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">
+					{{analysis_tab_name}}<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu" ng-controller="dwLinkController">
+					
+                        
+                           <li  ng-click="navModuleClicked(analysisHtmlname, '#/customer-analysis')"><a tabindex="-1" href="#/customer-analysis">Customer Analysis</a>
+                                       
+                           </li>
+                           <li  class="dropdown-submenu">
+                         <a tabindex="-1" >Segmentation</a>
+                         <ul class="dropdown-menu"	ng-click="trackUrlClicked(trackingHtmlName)">
+                                   
+				            <li ng-click="navModuleClicked(analysisHtmlname, '#/segment-overview')"><a tabindex="-1" href="#/segment-overview">Overview</a></li>                         
+                            <li ng-click="navModuleClicked(analysisHtmlname, '#/segment-deepdive')"><a tabindex="-1" href="#/segment-deepdive">Deepdive</a></li>
+                           </ul>  
+                        </li>
+                        
+                         </ul>                       
+				</li>
+                
+				<li ng-class="{active: mainHtml=='campaign-options'}" ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/overview')"><a href="campaign-options.htm#/overview">{{decisionWorkbenchTab}}</a></li>
+
+				<!-- <li class="dropdown" ng-class="{active: mainHtml=='campaign-options' || mainHtml=='decision-workbench'}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="campaign-options.htm#/wishlist"> {{decisionWorkbenchTab}}
+					 <span class="caret"></span></a>
+					<ul class="dropdown-menu" ng-controller="dwLinkController"> -->
+						<!-- <li class="first" ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/index')"><a ng-if="isSetGoalsEditable"
+							href="#/index" ng-class="{active: thisPage=='/index'||thisPage=='/builddo'}">
+							{{dw_index_tabText}}</a></li>
+						<li ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/review-do')"> <a ng-if="isReviewDOViewable" href="#/review-do"
+							ng-class="{active: thisPage=='/review-do'}">
+							{{dw_reviewdo_tabText}}</a></li> -->
+							<!-- <li class="first" ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/overview')"><a href="#/overview">
+							Overview</a></li> -->
+							<!-- <li ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/wishlist')"><a href="#/wishlist">
+							Wishlist</a></li>
+							<li ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/selected')"><a href="#/selected">
+							Selected</a></li> -->
+					<!-- </ul></li> -->
+					<li ng-class="{active: mainHtml=='wishlist'}" ng-click="navModuleClicked(decisionWorkbenchHtmlName, '#/wishlist')"><a href="campaign-options.htm#/wishlist">Wishlist</a></li>
+					<li ng-class="{active: mainHtml=='selected'}" ng-click="navModuleClicked(decisionWorkbenchHtmlName, ''#/selected'')"><a href="campaign-options.htm#/selected">Selected</a></li>
+                   <li style="border-left:1px solid #ccc;" class="dropdown"><a style="padding: 4px 5px 4px 20px;" class="dropdown-toggle"
+					data-toggle="dropdown" href="#" ng-controller="dwLinkController"><img width="35" src="images/profile-pic.png" alt="D-ASSIST $ CONVERTER"	title="D-ASSIST $ CONVERTER" />
+			
+                       <span	class="caret"></span></a>
+					<ul class="dropdown-menu" ng-click="trackUrlClicked(trackingHtmlName)">
+					
+                       <li><a tabindex="-1" href="change-password.htm" class="Logout" title="Change Password">Change	Password</a></li>
+			        <li><a tabindex="-1" href="login.htm" class="Logout" title="Logout">Logout</a></li>
+                        
+                           
+                         </ul>                       
+				</li>
+
+			</ul>
+			<ng-include src="'partials/header.htm'"></ng-include>
+		</div>
+	</div>
+</nav>

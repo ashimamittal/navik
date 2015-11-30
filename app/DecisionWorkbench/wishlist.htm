@@ -1,0 +1,150 @@
+<head>
+     <title>D-ASSIST $ CONVERTER</title>
+	<link rel="shortcut icon" href="images/logo.ico"/>
+</head>
+
+<div class="container campaign-overview" ng-cloak style="padding-top: 30px;">
+    
+     <div class="col-md-8">
+<ul style="margin-left:-30px; margin-bottom:5px;" class="breadcrumb">
+<li>
+<a style="color:#666;" href="home.htm">Home</a>
+</li>
+<li><a style="color:#666;" href="#/overview">Campaign Options</a></li>
+    <li class="active">Wishlist</li>
+</ul>
+</div>
+    <div class="col-md-4-big">
+       
+        <div id="exportIconsPanel" ng-if="thisPage!='/builddo'" style="background: #ffffff !important;">
+    <ul>
+						<li title="Print" class="Printicon">&nbsp;</li>
+						<li class="iconExport export">
+							<ul>
+								<li class="top"><a href="#" alt="Export to Pdf"
+									title="Export to Pdf" ng-click="pdfExport()">
+										<figure>
+											<img src="images/icon-pdf.png" />
+										</figure>
+								</a></li>
+								<li><a href="#" alt="Export to Excel"
+									title="Export to Excel">
+										<figure>
+											<img src="images/icon-excel.png" />
+										</figure>
+								</a></li>
+								<li><a href="#" alt="Export to Word" title="Export to Word">
+										<figure>
+											<img src="images/icon-word.png" />
+										</figure>
+								</a></li>
+							</ul>
+						</li>
+					</ul>
+        
+    </div>
+    </div>
+    <div class="clear"></div>
+    <div class="pull-right" id="timePeriodTabs" style="margin:0px; width:100%; padding-top:10px; border-top:1px solid #ccc;">
+					<ul style="float:left; margin-right:-8px;">
+						<li><a
+							class="" href="#" ng-click="broadcastPeriodChange('weekly',0)">Features</a></li>
+						<li ng-class="{'active': selectedIndex[1].selected}"><a
+							class="" href="#" ng-click="broadcastPeriodChange('monthly',1)">User Group</a></li>
+					</ul>
+				</div>
+      
+	<div class="row" ng-controller="wishlistController">
+	
+	
+		<div class="row-fluid" style="margin-top:30px;">
+			<ul class="list-inline overview-detail-tabs">
+			<li ng-class="{'active': selectedGroup[0].selected}" ng-click="broadcastselectedGroup('All Users',0)">
+			<div class="white-hover"><div class="icon-widget all-user-image"></div><div class="icon-widget-text">All Users</div></div></li>
+			<li ng-class="{'active': selectedGroup[1].selected}" ng-click="broadcastselectedGroup('Project Managers',1)">
+				<div class="icon-widget project-manager-image"></div><div class="icon-widget-text">Project Managers</div></li>
+			<li ng-class="{'active': selectedGroup[2].selected}" ng-click="broadcastselectedGroup('Enterprise users',2)">
+				<div class="icon-widget enterprise-image"></div><div class="icon-widget-text">Enterprise users</div></li>
+			<li ng-class="{'active': selectedGroup[3].selected}" ng-click="broadcastselectedGroup('Finance executives',3)">
+				<div class="icon-widget finance-image"></div><div class="icon-widget-text">Finance executives</div></li>
+			<li ng-class="{'active': selectedGroup[4].selected}" ng-click="broadcastselectedGroup('Musicians',4)">
+				<div class="icon-widget musicians-image"></div><div class="icon-widget-text">Musicians</div></li>
+			<li ng-class="{'active': selectedGroup[5].selected}" ng-click="broadcastselectedGroup('Photographers',5)">
+				<div class="icon-widget photographers-image"></div><div class="icon-widget-text">Photographers</div></li>
+			<!-- <li ng-class="{'active': selectedGroup[6].selected}" ng-click="broadcastselectedGroup('videographers',6)">
+				<div class="icon-widget videographers-image"></div><div class="icon-widget-text">Videographers</div></li> -->
+		    </ul>
+		</div>
+		<div class="row nopadding" style="margin-right: 23px;border:1px solid grey;">
+			<div class="collapseDiv">
+				<div class="panel-heading"> Best Campaign Options for {{groupHeading}}
+				</div>
+			</div>
+			<div class="panel-heading" ng-if="!isWishlistThere" style="text-align: center;">
+				There is no wishlist for the selected campaign.
+			</div>
+			<div class="collapse in" ng-if="isWishlistThere">
+				<table class="table borderless smSubsTable noMarginBtm campaign-overview-details" my-table  options="options" table-data="updateExpandData" function-call="selectRow" wishlist-data="wishlistSelected" execute-data="executeSelected">
+					<colgroup>
+						<col width="8%">
+						<col width="15%">
+						<col width="11%">
+						<col width="23%">
+						<col width="23%">
+						<col width="10%">
+						<col width="10%">
+					</colgroup>
+					<thead>
+				      <tr>
+				        <th>Campaign Id</th>
+				        <th>User Group</th>
+				        <th>Feature promoted</th>
+				        <th>Campaign Description</th>
+				        <th>Impact</th>
+				        <th>Wishlist</th>
+				        <th>Execute</th>
+				      </tr>
+				    </thead>
+				</table>
+					<div class="pull-right" style="margin: 10px 10px 10px 0px;text-decoration: underline;">
+						<a href="#/custom-filter">Custom decision option</a>
+					</div>
+			</div>
+		</div>
+		<!-- <div id="demo">
+			<div id="example">
+			</div>
+		</div> -->
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+	$(document).ready(
+			function() {
+				$(".xclose").click(
+						function() {
+							console.log("ppppppppp")
+							$(this).toggleClass("expandclose");
+							$(this).parents().closest('.collapsibleDiv').next()
+									.collapse('toggle');
+						});
+
+				$(".dropdown-menu li a").click(
+						function() {
+							$(this).parents().closest('.btn-group').find(
+									".btn:first-child").text($(this).text());
+							$(this).parents().closest('.btn-group').find(
+									".btn:first-child").val($(this).text());
+
+						});
+
+			});
+</script>
